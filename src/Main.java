@@ -1,44 +1,45 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Scanner;
-
+import CRM.Cliente;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
-        CRM.Cliente cliente = null;
-
+        Cliente cliente = null;
 
         do {
-            System.out.println("\n-- CRM --");
-            System.out.println("1. Criar Cliente");
-            System.out.println("2. Registrar interação");
-            System.out.println("3. Exibir informações do cliente");
-            System.out.println("4. Buscar interação");
-            System.out.println("5. Atualizar status");
-            System.out.println("6. Sair");
-            System.out.println("Escolha uma opção: ");
+            System.out.format("""
+                    -- CRM --
+                    1. Criar Cliente;
+                    2. Registrar Interação
+                    3. Exibir Informações de um cliente
+                    4. Buscar interação
+                    5. Sair;
+                    """);
 
             opcao = scanner.nextInt();
             scanner.nextLine();
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Nome: ");
+                    System.out.print("Nome: ");
                     String nome = scanner.nextLine();
 
-                    System.out.println("Email: ");
+                    System.out.print("Email: ");
                     String email = scanner.nextLine();
 
-                    System.out.println("Telefone: ");
+                    System.out.print("Telefone: ");
                     String telefone = scanner.nextLine();
 
-                    System.out.println("Status inicial: ");
+                    System.out.print("Status inicial: ");
                     String status = scanner.nextLine();
 
-                    cliente = new CRM.Cliente(nome, email, telefone, new String[5][5], status);
-                    System.out.println("Cliente criado");
+                    cliente = new Cliente(nome, email, telefone, new String[5][3], status);
+                    System.out.ormat("""
+                                Cliente criado com sucesso! %s
+                            """, cliente.getNome());
+
+                    System.out.println(" ");
                     break;
                 case 2:
                     if (cliente != null) {
@@ -54,12 +55,8 @@ public class Main {
                         cliente.registrarInteracao(tipo, descricao, data);
                     }
             }
-
-
         }
         while (opcao != 6);
-
     }
-
-    }
+}
 
