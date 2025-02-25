@@ -1,13 +1,16 @@
+package crm;
+
 public class CRM {
+
 
     public static class Cliente {
         // atributos
         private String nome;
         private String email;
         private String telefone;
-        private String[][] interacoes;
+        private String[][] interacoes = new String[5][3];
         private String status;
-        private int totalInteracoes = 0;
+        private int contador = 0;
 
         // metodo construtor
         public Cliente(String nome, String email, String telefone, String[][] interacoes, String status) {
@@ -18,22 +21,49 @@ public class CRM {
             this.status = status;
         }
 
-        public void registrarInteracao(String tipo, String descricao, String data) { // FIFO, first in first out
-            String[] novaInteracao = {tipo, descricao, data};
-
-            if (totalInteracoes < interacoes.length) {
-                interacoes[totalInteracoes] = novaInteracao;
-                totalInteracoes++;
-            }  else {
-                for (int i = 1; i < interacoes.length ; i++) {
-                    interacoes[i - 1] = interacoes[i];
-                }
-
-                interacoes[interacoes.length - 1] = novaInteracao;
-            }
-            System.out.println("Registrada.");
-
+        public String getNome() {
+            return nome;
         }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getTelefone() {
+            return telefone;
+        }
+
+        public String[][] getInteracoes() {
+            return interacoes;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public int getContador() {
+            return contador;
+        }
+
+        public int incrementarContador() {
+            return contador++;
+        }
+
+
+//        public void registrarInteracao(String tipo, String descricao, String data) {
+//            // FIFO, first in first out
+//            String[] novaInteracao = {tipo, descricao, data};
+//
+//            if (contador < interacoes.length) {
+//                interacoes[contador] = novaInteracao;
+//                contador++;
+//            } else {
+//                removerAntiga(novaInteracao);
+//            }
+//
+//            System.out.println("Registrada.");
+//
+//        }
 
         public void exibirInformacoes() {
             System.out.println("Nome: " + this.nome);
@@ -55,7 +85,9 @@ public class CRM {
                 if (interacao[0] != null) {
                     for (String campo : interacao) {
                         if (campo != null && campo.contains(palavraChave)) {
-                            System.out.println("Tipo: " + interacao[0] + ", Descrição: " + interacao[1] + ", Data: " + interacao[2]);
+                            System.out.println(
+                                    "Tipo: " + interacao[0] + ", Descrição: " + interacao[1] + ", Data: " + interacao[2]
+                            );
                             encontrei = true;
                             break;
                         }
@@ -72,6 +104,16 @@ public class CRM {
             System.out.println("Status atualizado para: " + this.status);
         }
 
+        private void removerAntiga(String[] novaInteracao) {
+            for (int i = 1; i < interacoes.length; i++) {
+                interacoes[i - 1] = interacoes[i];
+            }
+
+            interacoes[interacoes.length - 1] = novaInteracao;
+        }
+
     }
+
+
 
 }

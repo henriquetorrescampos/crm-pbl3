@@ -1,5 +1,5 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
+import crm.CRM;
+
 import java.util.Scanner;
 
 
@@ -11,14 +11,16 @@ public class Main {
 
 
         do {
-            System.out.println("\n-- CRM --");
-            System.out.println("1. Criar Cliente");
-            System.out.println("2. Registrar interação");
-            System.out.println("3. Exibir informações do cliente");
-            System.out.println("4. Buscar interação");
-            System.out.println("5. Atualizar status");
-            System.out.println("6. Sair");
-            System.out.println("Escolha uma opção: ");
+            System.out.print("""
+                    -- CRM --
+                    1. CRIAR CLIENTE
+                    2. REGISTRAR INTERAÇÃO
+                    3. EXIBIT INFORMAÇÕES CLENTE
+                    4. BUSCAR INTERAÇÃO
+                    5. SAIR
+                    
+                    ESCOLHA UMA OPÇÃO:
+                    """);
 
             opcao = scanner.nextInt();
             scanner.nextLine();
@@ -37,7 +39,7 @@ public class Main {
                     System.out.println("Status inicial: ");
                     String status = scanner.nextLine();
 
-                    cliente = new CRM.Cliente(nome, email, telefone, new String[5][5], status);
+                    cliente = new CRM.Cliente(nome, email, telefone, new String[5][3], status);
                     System.out.println("Cliente criado");
                     break;
                 case 2:
@@ -57,7 +59,7 @@ public class Main {
 
 
         }
-        while (opcao != 6);
+        while (opcao != 5);
 
     }
 
