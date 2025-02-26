@@ -1,21 +1,23 @@
-import crm.CRM;
-
+import CRM.Cliente;
+import CRM.interacao.Interacao;
+import CRM.exibir.Informacao;
+import CRM.buscar.Buscar;
 import java.util.Scanner;
+
 
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
-        CRM.Cliente cliente = null;
-
+        Cliente cliente = null;
 
         do {
             System.out.print("""
                     -- CRM --
                     1. CRIAR CLIENTE
                     2. REGISTRAR INTERAÇÃO
-                    3. EXIBIT INFORMAÇÕES CLENTE
+                    3. EXIBIR INFORMAÇÕES CLENTE
                     4. BUSCAR INTERAÇÃO
                     5. SAIR
                     
@@ -39,7 +41,7 @@ public class Main {
                     System.out.println("Status inicial: ");
                     String status = scanner.nextLine();
 
-                    cliente = new CRM.Cliente(nome, email, telefone, new String[5][3], status);
+                    cliente = new Cliente(nome, email, telefone, new String[5][3], status);
                     System.out.println("Cliente criado");
                     break;
                 case 2:
@@ -53,11 +55,37 @@ public class Main {
                         System.out.println("Data: ");
                         String data = scanner.nextLine();
 
-                        cliente.registrarInteracao(tipo, descricao, data);
+                        Interacao.registrarInteracao(cliente, tipo, descricao, data);
                     }
+                    else {
+                        System.out.println("Nenhum cliente cadastrado.");
+                    }
+                case 3:
+                    if (cliente != null) {
+                        // criando objeto classe Informacao
+                        Informacao info = new Informacao(cliente);
+
+                        info.exibirInformacoes();
+                    } else {
+                        System.out.println("Nenhum cliente cadastrado.");
+                    }
+                    break;
+                case 4:
+                    if (cliente != null) {
+                        System.out.println("Insira a interação que deseja buscar: ");
+                        String palavra = scanner.nextLine();
+
+                        Buscar buscar = new Buscar(cliente);
+                        buscar.buscarInteracao(palavra);
+                    }
+                    break;
+                case 5:
+                    System.out.println("Saindo...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida");
             }
-
-
         }
         while (opcao != 5);
 

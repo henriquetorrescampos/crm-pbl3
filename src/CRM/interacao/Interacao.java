@@ -1,7 +1,7 @@
-package interacao;
+package CRM.interacao;
 
-import crm.CRM.Cliente;
-import remocao.RemoverInteracao;
+import CRM.Cliente;
+import CRM.remocao.RemoverInteracao;
 
 public class Interacao {
     public static void registrarInteracao(Cliente cliente, String tipo, String descricao, String data) {
@@ -16,5 +16,5 @@ public class Interacao {
         } else {
             RemoverInteracao.removerAntiga(cliente, novaInteracao);
         }
-    }`=
+    }
 }

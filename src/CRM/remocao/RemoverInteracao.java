@@ -1,6 +1,6 @@
-package remocao;
+package CRM.remocao;
 
-import crm.CRM.Cliente;
+import CRM.Cliente;
 
 public class RemoverInteracao {
     public static void removerAntiga(Cliente cliente, String [] novaInteracao) {
